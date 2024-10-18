@@ -20,7 +20,10 @@ class MovieSeeder extends Seeder
                 ['title' => 'The Interview', 'year' => 2014, 'rating' => 6.5, 'images' => ''],
                 ['title' => 'El Camino', 'year' => 2019, 'rating' => 7.3, 'images' => ''],
                 ['title' => 'Bullet Train', 'year' => 2022, 'rating' => 7.3, 'images' => ''],
-                ['title' => 'Rush Hour', 'year' => 1998, 'rating' => 7.0, 'images' => '']
+                ['title' => 'Rush Hour', 'year' => 1998, 'rating' => 7.0, 'images' => ''],
+                ['title' => 'Klaus', 'year' => 2019, 'rating' => 8.2, 'images' => ''],
+                ['title' => 'My Neighbor Totoro', 'year' => 1998, 'rating' => 8.1, 'images' => '']
+
                 
                 ]
             );
