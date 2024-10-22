@@ -7,21 +7,8 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+ 
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -31,13 +18,7 @@ class MovieController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Movie $movie)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -62,4 +43,46 @@ class MovieController extends Controller
     {
         //
     }
+
+
+
+
+
+    /**
+     * Movie Controller section
+     */
+
+
+
+      /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $movies =Movie::all(); // Fetch all movies
+        return view('movies.index', compact('movies')); // Return the view with movies
+    }
+
+
+
+      /**
+     * Display the specified resource.
+     */
+    public function show(Movie $movie)
+    {
+        return view('movies.show')->with('movie', $movie);
+    }
+
+
+
+
+      /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('movies.create');
+    }
+
+    
 }
