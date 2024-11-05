@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4"> Add a New Movie:</h3>
               
-                    <x-movie-form2
+                    <x-movie-form
                     :action="route('movies.store')"
                     :method="'POST'"
                     />

@@ -53,9 +53,10 @@ class MovieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Movie $movie)
-    {
-        //
+    public function edit(Movie $movie, Request $request)
+    {        
+        return view('movies.edit')->with('movie', $movie);
+
     }
 
     /**
@@ -63,7 +64,23 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $request->validate([            
+            'title' => 'required',
+            'year' => 'required|integer',
+            'rating' => 'required|integer',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // I've made this NOT required. We'd need a way to persist images.
+            ]);
+
+        if ($request->hasFile('image') ) {
+
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/movies'), $imageName);
+        }
+
+        // https://stackoverflow.com/questions/43614815/what-is-the-update-method-in-laravel-5-4-crud
+        $movie->update($request->all());
+
+        return to_route('movies.index')->with('success', 'Movie updated successfully!');
     }
 
     /**
@@ -71,7 +88,16 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $movie->delete();
+
+        if($movie){
+            return to_route('movies.index')->with('danger', 'Movie deleted successfully!');
+        }
+
+        else{
+            throw new Error('Movie failed to delete');
+        }
+        
     }
 
 
