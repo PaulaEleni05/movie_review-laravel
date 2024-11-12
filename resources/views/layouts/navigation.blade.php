@@ -18,9 +18,13 @@
                     <x-nav-link :href="route('movies.index')" :active="request()->routeIs('movies.index')">
                         {{ __('View All Movies') }}
                     </x-nav-link>
+
+                    {{-- the create link only appears for admin users --}}
+                    @if(auth()->user()->role === 'admin')
                     <x-nav-link :href="route('movies.create')" :active="request()->routeIs('movies.create')">
                         {{ __('Create Movies') }}
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 
