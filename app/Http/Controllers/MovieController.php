@@ -126,7 +126,9 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return view('movies.show')->with('movie', $movie);
+        $movie->load('reviews.user');
+        return view('movies.show', compact('movie')); //Alterd the MovieControllor show() function
+        // return view('movies.show')->with('movie', $movie);
     }
 
 

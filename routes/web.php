@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\MovieController;
 
 Route::get('/', function () {
@@ -22,6 +22,10 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+// The code below creates all Routes fro reviews
+Route::resource('reviews',ReviewController::class);
+
+Route::post('movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
@@ -30,3 +34,4 @@ Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.sh
 Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::patch('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+
