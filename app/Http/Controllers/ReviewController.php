@@ -61,15 +61,29 @@ class ReviewController extends Controller
     public function edit(Review $review)
     {
         //
+        if (auth()->user()->id !== $review->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->route('movies.index')->with('error', 'Access denied.');
+        }
+
+        return view('reviews.edit', compact('review'));
     }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Review $review)
     {
-        //
+        $review->update($request->only(['rating', 'comment']));
+
+        return redirect()->route('movies.show', $review->movie_id)
+                         ->with('success', 'Review updated successfully.');
     }
+
+
+
+    
 
     /**
      * Remove the specified resource from storage.

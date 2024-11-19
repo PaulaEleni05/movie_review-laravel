@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
-// The code below creates all Routes fro reviews
+// The code below creates all Routes for reviews
 Route::resource('reviews',ReviewController::class);
 
 Route::post('movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
