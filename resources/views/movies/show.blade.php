@@ -36,7 +36,7 @@
                                 <a href="{{ route('reviews.edit', $review) }}" class="bg-yellow-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
                                     {{ __('Edit Review') }}
                                 </a>
-                                <form action="POST" action="{{ route('reviews.destroy', $review) }}">
+                                <form method="POST" action="{{ route('reviews.destroy', $review) }}">
                                     @csrf
                                     @method('delete')
                                     <x-danger-button :href="route('reviews.destroy', $review)"

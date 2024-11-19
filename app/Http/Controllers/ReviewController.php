@@ -90,6 +90,16 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        // dd($review); 
+
+        $review->delete();
+
+        if($review){
+            return to_route('movies.index')->with('danger', 'Review deleted successfully!');
+        }
+
+        else{
+            throw new Error('Review failed to delete');
+        }
     }
 }
