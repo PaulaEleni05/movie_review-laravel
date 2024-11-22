@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('year');
             $table->integer('rating');
-            $table->string('images');
+            $table->string('image');
             
         });
     }

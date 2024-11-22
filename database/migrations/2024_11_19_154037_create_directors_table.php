@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('directors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            // $table->string('image')->nullable(); //Profile headshot for Director
+            $table->string('image')->nullable(); //Profile headshot for Director
             $table->text('bio')->nullable(); //Paragraph about the Director
             $table->timestamps();
         });

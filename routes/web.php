@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\DirectorController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +29,10 @@ Route::resource('reviews',ReviewController::class);
 
 Route::post('movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
+//Route for Director 
+Route::resource('directors',DirectorController::class)->middleware('auth');
+
+//Routes for Movies
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
 Route::get('/movies/create', [MovieController::class, 'create'])->name('movies.create');
 Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');

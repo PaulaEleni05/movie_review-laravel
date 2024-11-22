@@ -19,8 +19,15 @@ class Movie extends Model
         'updated_at',
     ];
 
+    //Movie can have many reviews
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    //Movie can have many directors
+    public function directors()
+    {
+        return $this->belongsToMany(Director::class);
     }
 }
