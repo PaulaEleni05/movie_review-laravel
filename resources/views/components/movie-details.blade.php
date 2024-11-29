@@ -9,5 +9,5 @@
 </div>
 </div>
 
-<h2 class="text-black-500 text-sm italic mb-4" style="font-size: 1rem;">Realsed: ({{ $year }})</h2>
+<h2 class="text-black-500 text-sm italic mb-4" style="font-size: 1rem;">Released: ({{ $year }})</h2>
 <h3 class="text-black-500 text-sm italic mb-4" style="font-size: 1rem;">({{ $rating }})</h3>

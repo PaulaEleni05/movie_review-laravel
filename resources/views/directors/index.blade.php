@@ -22,7 +22,7 @@
                         <div>
                         <a href="{{ route('directors.show', $director) }}"> 
                          <x-director-card
-                         :name="$director->title"
+                         :name="$director->name"
                          :image="$director->image"
                          :bio="$director->bio"
                         />

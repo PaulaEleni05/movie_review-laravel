@@ -99,7 +99,7 @@ class DirectorController extends Controller
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|max:2048',
             'bio' => 'nullable|string|max:1000',
-            'movies' => 'array',
+            // 'movies' => 'array',
           ]);
 
           $director->update($validated);

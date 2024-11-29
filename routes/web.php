@@ -33,6 +33,7 @@ Route::post('movies/{movie}/reviews', [ReviewController::class, 'store'])->name(
 Route::resource('directors',DirectorController::class)->middleware('auth');
 Route::get('/directors', [DirectorController::class, 'index'])->name('directors.index');
 Route::get('/directors/{director}', [DirectorController::class, 'show'])->name('directors.show');
+Route::post('/directors', [DirectorController::class, 'store'])->name('directors.store');
 Route::get('/directors/create', [DirectorController::class, 'create'])->name('directors.create');
 Route::get('/directors/{director}/edit', [DirectorController::class, 'edit'])->name('directors.edit');
 Route::patch('/directors/{director}', [DirectorController::class, 'update'])->name('directors.update');
