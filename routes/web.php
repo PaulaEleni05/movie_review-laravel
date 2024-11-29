@@ -29,8 +29,14 @@ Route::resource('reviews',ReviewController::class);
 
 Route::post('movies/{movie}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 
-//Route for Director 
+//Routes for Director 
 Route::resource('directors',DirectorController::class)->middleware('auth');
+Route::get('/directors', [DirectorController::class, 'index'])->name('directors.index');
+Route::get('/directors/{director}', [DirectorController::class, 'show'])->name('directors.show');
+Route::get('/directors/create', [DirectorController::class, 'create'])->name('directors.create');
+Route::get('/directors/{director}/edit', [DirectorController::class, 'edit'])->name('directors.edit');
+Route::patch('/directors/{director}', [DirectorController::class, 'update'])->name('directors.update');
+Route::delete('/directors/{director}', [DirectorController::class, 'destroy'])->name('directors.destroy');
 
 //Routes for Movies
 Route::get('/movies', [MovieController::class, 'index'])->name('movies.index');
@@ -40,4 +46,5 @@ Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.sh
 Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::patch('/movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+
 
