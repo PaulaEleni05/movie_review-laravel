@@ -103,12 +103,13 @@ class DirectorController extends Controller
      */
     public function edit(Director $director)
     {
-        //get all the movies
-        $movies = Movie::all();
-        $directorMovies = $director->movies->pluck('id')->toArray();
-        return view('directors.edit', compact('director', 'movies', 'directorMovies'));
+        return view('directors.edit')->with('director', $director);
+
+
     }
 
+
+ 
 
 
     
