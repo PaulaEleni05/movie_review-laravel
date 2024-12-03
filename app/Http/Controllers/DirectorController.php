@@ -6,6 +6,7 @@ use App\Models\Director;
 // use App\Models\Movie;
 use Illuminate\Http\Request;
 
+
 class DirectorController extends Controller
 {
     /**
@@ -18,33 +19,38 @@ class DirectorController extends Controller
         return view('directors.index', compact('directors'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        if(auth()-user()->role !== 'admin'){
-            return redirect()-route('movies.index')->with('error', 'Access denied.');
-        }
+        // if(auth()-user()->role !== 'admin'){
+        //     return redirect()-route('directors.index')->with('error', 'Access denied.');
+        // }
 
-        $movies = Movie::all();
-        return view('directors.create', compact('movies'));
+        $directors = Director::all();
+        return view('directors.create', compact('directors'));
     }
+
+
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
    {
-      if (auth()->user()->role !== 'admin') {
-        return redirect()->route('directors.index')->with('error', 'Access denied.');
-      }
+      // if (auth()->user()->role !== 'admin') {
+      //   return redirect()->route('directors.index')->with('error', 'Access denied.');
+      // }
 
-      $validated =$request->validate([
+      $request->validate([
         'name' => 'required|string|max:255',
         'image' => 'nullable|image|max:2048',
-        'bio' => 'nullable|string|max:1000',
-        // 'movies' => 'array',
+        'bio' => 'required|string|max:1000',
+      
       ]);
 
       if ($request->hasFile('image')) {
@@ -56,12 +62,23 @@ class DirectorController extends Controller
         $validated['image'] = $imageName;
       }
 
-      $director =Director::create($validated);
+      // $director =Director::create($validated);
 
-      if ($request->has('movies')) {
+      // if ($request->has('movies')) {
 
-        $director->movies()->attach($request->movies);
-      }
+      //   $director->movies()->attach($request->movies);
+      // }
+
+
+        //Create a director record in the database
+        Director::create([
+          'name' => $request->name,
+          'bio' => $request->bio,
+          'image' => $imageName, 
+          'created_at' => now(),
+          'updated_at' => now()
+      ]);
+
 
       return redirect()->route('directors.index')->with('success', 'Director created successfully.');
 
@@ -79,6 +96,8 @@ class DirectorController extends Controller
       return (view('directors.show', compact('director')));
     }
 
+
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -90,6 +109,9 @@ class DirectorController extends Controller
         return view('directors.edit', compact('director', 'movies', 'directorMovies'));
     }
 
+
+
+    
     /**
      * Update the specified resource in storage.
      */
