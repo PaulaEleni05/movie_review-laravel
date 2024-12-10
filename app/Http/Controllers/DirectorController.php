@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Director;
-// use App\Models\Movie;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 
@@ -92,8 +92,17 @@ class DirectorController extends Controller
      */
     public function show(Director $director)
     {
-      $director->load('movies');
-      return (view('directors.show', compact('director')));
+      // Every movie, no filter
+      $movies = Movie::all();
+
+      // When getting only this director's movies
+      // $movies = $director->movies();
+
+      //$director->load('movies');
+
+      return (
+        view('directors.show', compact('director'), compact('movies'))
+      );
     }
 
 
